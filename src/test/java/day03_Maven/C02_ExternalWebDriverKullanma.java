@@ -8,7 +8,7 @@ import utilities.ReusableMethods;
 import java.time.Duration;
 
 public class C02_ExternalWebDriverKullanma {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         // Eger calistigimiz sirket bize Selenium WebDriver disinda
@@ -25,5 +25,7 @@ public class C02_ExternalWebDriverKullanma {
 
         ReusableMethods.bekle(3);
         driver.quit();
+
+
     }
 }
