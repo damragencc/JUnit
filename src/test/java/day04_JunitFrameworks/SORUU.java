@@ -75,6 +75,8 @@ public class SORUU {
         WebElement logo= driver.findElement(By.xpath("//*[text()='Français']"));
         logo.click();
 
+        Assert.assertTrue(logo.isDisplayed());
+
     }
 
 
