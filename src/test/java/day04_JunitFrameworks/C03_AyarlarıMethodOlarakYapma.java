@@ -1,4 +1,4 @@
-package tests.day04_JunitFramework;
+package day04_JunitFrameworks;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Ignore;

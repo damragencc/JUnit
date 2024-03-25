@@ -1,9 +1,8 @@
-package tests.day04_JunitFramework;
+package day04_JunitFrameworks;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import junit.framework.AssertionFailedError;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -16,7 +15,16 @@ import utilities.ReusableMethods;
 import java.time.Duration;
 import java.util.List;
 
-public class C07_AssertionMethodlari {
+public class C06_Assertion {
+
+     /*
+        JUnit bir test method'unun PASSED veya FAILED olmasina
+        kodlarin problemsiz olarak calisip calismamasina bakarak karar verir
+        eger kodlari calistirirken hic bir sorunla karsilasmazsa
+        (Process finished with exit code 0)
+        testleri PASSED olarak isaretler
+     */
+
     static WebDriver driver;
     List<WebElement> bulunanUrunElementleriList;
 
@@ -30,7 +38,7 @@ public class C07_AssertionMethodlari {
 
     @AfterClass
     public static void teardown(){
-        ReusableMethods.bekle(2);
+       ReusableMethods.bekle(2);
         driver.quit();
     }
 
@@ -41,13 +49,15 @@ public class C07_AssertionMethodlari {
 
         driver.get("https://www.testotomasyonu.com");
 
-        String expectedUrlIcerik = "testotomasyonu";
+        String expectedUrlIcerik = "testotomasyonu111";
         String actualUrl = driver.getCurrentUrl();
 
-
-        Assert.assertTrue("Url istenen metni icermiyor",actualUrl.contains(expectedUrlIcerik));
-
-
+        if (actualUrl.contains(expectedUrlIcerik)){
+            System.out.println("Anasayfa testi PASSED");
+        }else {
+            System.out.println("Anasayfa testi FAILED");
+            throw new AssertionFailedError("Url istenen metni icermiyor");
+        }
     }
 
     @Test
@@ -60,9 +70,12 @@ public class C07_AssertionMethodlari {
         // bu test icin bulunan urun listesi olusturup size'ini test edelim
         bulunanUrunElementleriList = driver.findElements(By.xpath("//div[@class='product-box my-2  py-1']"));
 
-        Assert.assertTrue("Bulunan urun listesi bos",bulunanUrunElementleriList.size()>0);
-
-
+        if (bulunanUrunElementleriList.size()==0){
+            System.out.println("Urun arama testi PASSED");
+        }else {
+            System.out.println("Urun arama testi FAILED");
+            throw new AssertionFailedError("Bulunan urun listesi bos");
+        }
 
     }
 
@@ -73,14 +86,16 @@ public class C07_AssertionMethodlari {
         bulunanUrunElementleriList.get(0).click();
         //    urun isminde case sensitive olmadan phone gectigini test edin
 
-        String expectedUrunIsimIcerik = "phone";
+        String expectedUrunIsimIcerik = "phonexx";
         String actualIsimKucukHarf = driver.findElement(By.xpath("//div[@class=' heading-sm mb-4']"))
                 .getText()
                 .toLowerCase();
-
-
-        Assert.assertTrue("urun ismi phone icermiyor",actualIsimKucukHarf.contains(expectedUrunIsimIcerik));
-
+        if (actualIsimKucukHarf.contains(expectedUrunIsimIcerik)){
+            System.out.println("Urun isim testi PASSED");
+        }else {
+            System.out.println("Urun isim testi FAILED");
+            throw new AssertionFailedError("urun ismi phone icermiyor");
+        }
 
     }
 }

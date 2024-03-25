@@ -1,8 +1,6 @@
-package tests.day04_JunitFramework;
+package day04_JunitFrameworks;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -11,44 +9,29 @@ import utilities.ReusableMethods;
 
 import java.time.Duration;
 
-public class C04_Before_After {
+public class C02_JUnitIlkTest {
 
     /*
-          EGER
-          her test method'undan once MUTLAKA CALISMASINI istedigimiz bir method varsa
-          @Before nostasyonu ile isaretlenebilir
+         JUNit'in bize sagladigi en buyuk avantajlardan biri @Test nostasyonudur
 
-          Aynı sekilde
-            her test method'undan once MUTLAKA CALISMASINI istedigimiz bir method varsa
-          @After nostasyonu ile isaretlenebilir
+         @Test sayesinde siradan method'lar bagimsiz olarak calisabilecek test method'larina donusur
+
+         JUNit'de bir class'daki test method'larinin hangi sira ile calisacagi
+         ONGURULEMEZ ve DUZENLENEMEZ
+         (test01, test02, test03 yazarsak bu siraya uygun calistiriyor)
 
      */
-    WebDriver driver;
 
-     @Before
-    public void setUp(){
+        //asagidaki 3 websayfasina gidip, o sayfalara gittigimizi test edin
+        //testler birlikte veya ayi ayri calistirilabilmelidir
+        //youtube, testotomasyonu ve wisequarter
 
+    @Test @Ignore
+    public void youtubeTesti(){
         WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
+        WebDriver driver=new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-
-         System.out.println("Setup methodu calistir");
-
-
-    }
-
-    @After
-    public void teardowm(){
-
-        ReusableMethods.bekle(2);
-        driver.quit();
-        System.out.println("teardown methodu calisti");
-    }
-
-
-    @Test
-    public void youtubeTesti(){
 
         driver.get("http://www.youtube.com");
 
@@ -59,14 +42,18 @@ public class C04_Before_After {
             System.out.println("Youtube testi PASSED");
         }else System.out.println("Youtube testi FAİLED");
 
-
+        ReusableMethods.bekle(2);
+        driver.quit();
     }
 
 
 
     @Test
     public void testOtomasyonu(){
-
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
         driver.get("http://www.testotomasyonu.com");
 
@@ -77,7 +64,8 @@ public class C04_Before_After {
             System.out.println("Testotomasyonu testi PASSED");
         }else System.out.println("Testotomasyonu testi FAİLED");
 
-
+        ReusableMethods.bekle(2);
+        driver.quit();
 
     }
 
@@ -85,7 +73,10 @@ public class C04_Before_After {
 
     @Test
     public void wisequarterTesti(){
-
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
         driver.get("http://www.wisequarter.com");
 
@@ -96,8 +87,12 @@ public class C04_Before_After {
             System.out.println("wisequarter testi PASSED");
         }else System.out.println("wisequarter testi FAİLED");
 
-
+        ReusableMethods.bekle(2);
+        driver.quit();
 
     }
+
+
+
 
 }
