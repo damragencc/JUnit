@@ -11,6 +11,18 @@ public class C06_KontrolluWindow extends TestBase_BeforeAfter {
     @Test
     public void test01(){
 
+        /*
+             Eger yaptigimiz test sirasinda
+             kontrollu olarak yeni tab/window olusturursak
+             driver objesi OTOMATİK olarak yeni windowa gecis yapar
+
+             Eger testimiz sirasinda
+             gectigimiz window'lara tekrar donmemiz gerekiyorsa
+             o window'dan gecerken Window handle degerini kaydedip
+             ihtiyac oldugunda  driver.switchTo().window(toWindownHandleDegeri);
+             ile eski Window 'a donebiliriz
+         */
+
         //● testotomasyonu anasayfa adresine gidin.
 
         driver.get("https://www.testotomasyonu.com");
@@ -51,7 +63,7 @@ public class C06_KontrolluWindow extends TestBase_BeforeAfter {
 
         Assert.assertTrue(actuallTitle.contains(expectedTittlee));
 
-        //● Ilk acilan sayfaya donun ve amazon sayfasina dondugunuzu test edin
+        //● Ilk acilan sayfaya donun ve otomasyon sayfasina dondugunuzu test edin
 
         driver.switchTo().window(toWindownHandleDegeri);
          expectedIcerikTittle="Otomasyon";

@@ -34,6 +34,7 @@ public class C01_JsAlert extends TestBase_BeforeAfterClass {
         Assert.assertEquals(expected,actualYazi);
 
         // - OK tusuna basip alert'i kapatin
+
         driver.switchTo().alert().accept();
 
       ReusableMethods.bekle(2);
