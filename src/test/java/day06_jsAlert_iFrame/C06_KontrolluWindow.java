@@ -63,7 +63,7 @@ public class C06_KontrolluWindow extends TestBase_BeforeAfter {
 
         Assert.assertTrue(actuallTitle.contains(expectedTittlee));
 
-        //● Ilk acilan sayfaya donun ve otomasyon sayfasina dondugunuzu test edin
+        //● Ilk acilan sayfaya donun ve amazon sayfasina dondugunuzu test edin
 
         driver.switchTo().window(toWindownHandleDegeri);
          expectedIcerikTittle="Otomasyon";

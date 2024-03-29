@@ -25,6 +25,10 @@ public class C05_DropdownList extends TestBase_BeforeAfter {
          */
 
         //testotomasyonu anasayfaya gidin
+        //dogum tarihi gun acilir menusunden 5'i secin
+        //ve 5'in secili oldugunu test edin
+
+
         driver.get("https://www.testotomasyonu.com/form");
 
         //dogum tarihi gun acilir menusunden 5'i secin

@@ -42,6 +42,8 @@ public class C03_SagClick extends TestBase_BeforeAfter {
 
          driver.switchTo().alert().accept();
 
+
+
          ReusableMethods.bekle(3);
      }
      }

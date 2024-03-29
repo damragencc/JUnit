@@ -23,8 +23,11 @@ public class C01_BeforeAfterKullanımı {
 
         Assert method'lari assertion failed oldugunda exception fırlatır ve
         test method'unda kod calismasini durdurur
-
-
+ // testotomasyonu anasayfaya gidin
+   // nutella icin arama yapin
+     // arama sonucunda urun bulunabildigini test edin
+      // arama sonucunda urun bulunabildigini test edin
+      // sayfayi kapatin
      */
 
     WebDriver driver ;
@@ -45,7 +48,8 @@ public class C01_BeforeAfterKullanımı {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-//*[@class='product-box my-2  py-1']
+
+        //*[@class='product-box my-2  py-1']
               // testotomasyonu anasayfaya gidin
         driver.get("https://www.testotomasyonu.com");
 

@@ -16,6 +16,9 @@ public class C01_JsAlert extends TestBase_BeforeAfterClass {
 
         //1. Test
         // - https://testotomasyonu.com/javascriptAlert adresine gidin
+        // - 1.alert'e tiklayin
+        // - Alert'deki yazinin "I am a JS Alert" oldugunu test edin
+        // - OK tusuna basip alert'i kapatin
 
         driver.get("https://testotomasyonu.com/javascriptAlert");
 
