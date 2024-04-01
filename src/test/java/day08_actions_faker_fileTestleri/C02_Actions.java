@@ -13,7 +13,6 @@ public class C02_Actions extends TestBase_BeforeAfter {
 
     @Test
     public void test01(){
-
    /*
             Bazi web sayfalari
             gorunmeyen webelementleri locate etmemize izin verir, bazilari izin vermez
@@ -32,9 +31,11 @@ public class C02_Actions extends TestBase_BeforeAfter {
             bu test tum bilgisayarlarda calismayabilir
          */
 
-
-
         //1- https://html.com/tags/iframe/ sayfasina gidelim
+        //2- video’yu gorecek kadar asagi inin
+        //actions.scrollToElement(iframeElementi);
+        //3- videoyu izlemek icin Play tusuna basin
+        //4- videoyu calistirdiginizi test edin
         driver.get("https://html.com/tags/iframe/");
 
         //2- video’yu gorecek kadar asagi inin
@@ -44,30 +45,31 @@ public class C02_Actions extends TestBase_BeforeAfter {
 
         WebElement iframeElementi =driver.findElement(By.xpath("(//iframe)[1]"));
 
-        //actions.scrollToElement(iframeElementi);
-
 
         driver.switchTo().frame(iframeElementi);
 
-        ReusableMethods.bekle(1);
+        ReusableMethods.bekle(2);
+
+
 
 
         //3- videoyu izlemek icin Play tusuna basin
-        WebElement playTusu = driver.findElement(By.xpath("//button[@title='Play']"));
+
+        driver.findElement(By.xpath("//*[@aria-label='Oynat']")).click();
 
 
-        playTusu.click();
-        ReusableMethods.bekle(2);
+
         //4- videoyu calistirdiginizi test edin
-        WebElement videoElementi = driver.findElement(By.xpath("//*[@*='video-stream html5-main-video']"));
-        actions.moveToElement(videoElementi).perform();
+
+        WebElement playOynat= driver.findElement(By.xpath("//*[@aria-label='Duraklat klavye kısayolu k']"));
+
+        Assert.assertTrue(playOynat.isEnabled());
+
         ReusableMethods.bekle(2);
-        WebElement sesElementi = driver.findElement(By.xpath("//*[@*='ytp-volume-panel']"));
-        Assert.assertTrue(sesElementi.isEnabled());
 
-        ReusableMethods.bekle(5);
-    }
+
 
 
     }
 
+    }
