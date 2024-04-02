@@ -28,11 +28,17 @@ public class C01_ReadExcel {
 
        Sheet sayfa1= workbook.getSheet("Sayfa1");
 
-        Row satir2 = sayfa1.getRow(2);
+        Row satir2 = sayfa1.getRow(1);
 
-        Cell sati2ucuncuData= satir2.getCell(3);
+        Cell sati2ucuncuData= satir2.getCell(2);
 
         System.out.println(sati2ucuncuData);
+
+        // 4.satirdaki 2.datayi yazdiralim
+
+        System.out.println(sayfa1.getRow(3).getCell(1));
+
+
 
     }
 }
