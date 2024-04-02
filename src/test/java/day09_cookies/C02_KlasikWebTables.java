@@ -11,88 +11,87 @@ import java.util.List;
 
 public class C02_KlasikWebTables extends TestBase_BeforeAfter {
 
-    @Test
-    public void test01(){
 
-        //1."https://testotomasyonu.com/webtables" adresine gidin
+        @Test
+        public void test01(){
+            //1."https://testotomasyonu.com/webtables" adresine gidin
 
-        driver.get("https://testotomasyonu.com/webtables");
+            driver.get("https://testotomasyonu.com/webtables");
+            //2.Web table tum body’sini yazdirin
+            WebElement tumBodyElementi = driver.findElement(By.tagName("tbody"));
+            System.out.println(tumBodyElementi.getText());
+            //3. Web tablosunda "Comfortable Gaming Chair" bulundugunu test edin
 
-        //2.Web table tum body’sini yazdirin
+            String expectedBodyIcerik = "Comfortable Gaming Chair";
+            String actualTumBody = tumBodyElementi.getText();
 
-        WebElement tumBodyElementi=driver.findElement(By.tagName("tbody"));
-        System.out.println(tumBodyElementi.getText());
+            Assert.assertTrue(actualTumBody.contains(expectedBodyIcerik));
 
-        //3. Web tablosunda "Comfortable Gaming Chair" bulundugunu test edin
+            //4. Web table’daki satir sayisinin 5 oldugunu test edin
 
-        String expectedBodyIceriK="Comfortable Gaming Chair";
+            List<WebElement> satirElementleriList = driver.findElements(By.xpath("//tbody/tr"));
 
-        String actualTumBody=tumBodyElementi.getText();
+            int expectedSatirSayisi = 5;
+            int actualSatirSayisi = satirElementleriList.size();
+            Assert.assertEquals(expectedSatirSayisi,actualSatirSayisi);
 
-        Assert.assertTrue(actualTumBody.contains(expectedBodyIceriK));
+            //5. Tum satirlari yazdirin
+            // System.out.println(ReusableMethods.stringListeDonustur(satirElementleriList));
 
-        //4. Web table’daki satir sayisinin 5 oldugunu test edin
+            System.out.println("--------------------------------");
 
-        List<WebElement> satirElementleriList=driver.findElements(By.xpath("//tbody/tr"));
+            for (int i = 0; i < satirElementleriList.size() ; i++) {
 
-        int expectedSatirSayisi= 5;
-        int actualSatirSayisi=satirElementleriList.size();
+                System.out.println(i+1 +". satir   :    " + satirElementleriList.get(i).getText());
+            }
 
-          Assert.assertEquals(actualSatirSayisi,expectedSatirSayisi);
+            //6. Web table’daki sutun sayisinin 4 olduğunu test edin
 
-        //5. Tum satirlari yazdirin
+            int expectedSutunSayisi = 4 ;
+            // herhangi bir satirdaki datalari list'e koyup, list'in size'ina bakabiliriz
 
-        System.out.println( ReusableMethods.stringListeDonustur(satirElementleriList));
+            List<WebElement> birinciSatirElementleriList = driver.findElements(By.xpath("//tbody/tr[1]/td"));
+            int actualSutunSayisi = birinciSatirElementleriList.size();
 
+            Assert.assertEquals(expectedSutunSayisi,actualSutunSayisi);
 
-        //6. Web table’daki sutun sayisinin 4 olduğunu test edin
+            //7. 3.sutunu yazdirin
 
-        int expectedSutunSayisi=4;
-
-        //herhangi bir satirdaki datalari List'e koyup List'in size'ina bakabiliriz
-
-        List<WebElement> birinciSatirElementleri=driver.findElements(By.xpath("//tbody/tr[1]/td"));
-
-        int actualSayisi=birinciSatirElementleri.size();
-
-        Assert.assertEquals(expectedSutunSayisi,actualSayisi);
-
-
-        //7. 3.sutunu yazdirin
-
-        List<WebElement> ucuncuSutunElementleriList=driver.findElements(By.xpath("//tbody/tr/td[3]"));
-
-        System.out.println("Ucuncu sutun elementleri listesi " +ReusableMethods.stringListeDonustur(ucuncuSutunElementleriList));
+            List<WebElement> ucuncuSutunElementleriList =
+                    driver.findElements(By.xpath("//tbody/tr/td[3]"));
 
 
-        //8. Tablodaki basliklari yazdirin
+            System.out.println("Ucuncu sutun elementleri listesi : " +
+                    ReusableMethods.stringListeDonustur(ucuncuSutunElementleriList));
 
-        WebElement baslıkSatirElementi=driver.findElement(By.xpath("//thead/tr"));
-        System.out.println("Baslıklar  : " +baslıkSatirElementi.getText());
+            //8. Tablodaki basliklari yazdirin
 
-        //9. Satir ve sutunu parametre olarak alip, hucredeki bilgiyi döndüren bir method olusturun
-
-
-        System.out.println(getData(2,3));
-
-        //10. 4.satirdaki category degerinin "Furniture" oldugunu test edin
-
-            String expectedData="Furniture";
-            String actualData=getData(4,2);
-
-            Assert.assertEquals(actualData,expectedData);
+            WebElement baslikSatirElementi = driver.findElement(By.xpath("//thead/tr"));
+            System.out.println("Basliklar : " + baslikSatirElementi.getText());
 
 
-    }
+            //9. Satir ve sutunu parametre olarak alip, hucredeki bilgiyi döndüren bir method olusturun
 
-    public String getData(int satir, int sutun){
+            System.out.println(getData(2, 3)); // $40.00
+            System.out.println(getData(1,2)); // Electronics
+            System.out.println(getData(4,4)); // Go
 
-        //         //tbody/tr[  2  ]/td[    2   ]
+            //10. 4.satirdaki category degerinin "Furniture" oldugunu test edin
 
-        String dinamikXpath="//tbody/tr["  + satir + "]/td[" +sutun + "]";
+            String expectedData = "Furniture";
+            String actualData = getData(4,2);
 
-        WebElement istenenDataElementi=driver.findElement(By.xpath(dinamikXpath));
+            Assert.assertEquals(expectedData,actualData);
 
-        return  istenenDataElementi.getText();
-    }
+            ReusableMethods.bekle(2);
+        }
+
+        public String getData(int satir, int sutun){
+            //        //tbody/tr[  5   ]/td[   1   ]
+
+            String dinamikXpath = "//tbody/tr[" + satir + "]/td[" + sutun + "]";
+            WebElement istenenDataElementi = driver.findElement(By.xpath(dinamikXpath));
+
+            return istenenDataElementi.getText();
+        }
 }
