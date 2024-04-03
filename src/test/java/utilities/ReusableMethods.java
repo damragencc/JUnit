@@ -99,4 +99,32 @@ public class ReusableMethods {
 
 
     }
+    public static void webelementScreenshot(WebElement istenenElement,String raporIsmi){
+        LocalDateTime ldt = LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYMMddHHmmss");
+        String tarihDamgasi = ldt.format(dtf); // 240402123223
+
+        String kaydedilecekDosyaYolu = "target/screenshots/"+raporIsmi+tarihDamgasi+".jpeg";
+
+        // 1- screenshot alinacak webelemnti locate edip kaydedelim
+
+        // 2- screenshot'in kaydedilecegi dosyayi olusturalim
+
+        File webelementSS = new File(kaydedilecekDosyaYolu);
+
+        // 3- screenshot alip gecici dosyaya kaydedelim
+
+        File geciciDosya = istenenElement.getScreenshotAs(OutputType.FILE);
+
+        // 4- gecici dosyayi ana dosyaya kopyalayalim
+
+        try {
+            FileUtils.copyFile(geciciDosya,webelementSS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 }
